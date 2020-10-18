@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Core\BankIntegration\IntegrationInterface;
+use Core\BankIntegration\SomeBankClient;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        app()->bind(IntegrationInterface::class, SomeBankClient::class);
     }
 
     /**

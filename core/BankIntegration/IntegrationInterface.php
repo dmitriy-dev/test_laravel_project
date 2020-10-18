@@ -3,6 +3,8 @@
 
 namespace Core\BankIntegration;
 
+use Core\User\User;
+
 /**
  * Interface IntegrationInterface
  * @package Core\BankIntegration
@@ -10,8 +12,8 @@ namespace Core\BankIntegration;
 interface IntegrationInterface
 {
     /**
-     * @param string $account
-     * @return ResponseInterface
+     * @param User $user
+     * @return ResponseStructure
      */
-    public function sendMoney(string $account): ResponseInterface;
+    public function sendMoney(User $user): ResponseStructure;
 }

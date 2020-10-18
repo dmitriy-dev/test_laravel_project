@@ -9,7 +9,7 @@ use Core\User\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Ramsey\Collection\Collection;
+use Illuminate\Support\Collection;
 
 /**
  * Class UserBalance
@@ -32,14 +32,14 @@ class UserBalance extends Model
     {
         /** @var Collection $logs */
         $logs = $this->logs;
-        return array_sum($logs->column('amount'));
+        return $logs->sum('amount');
     }
 
     /**
      * @param float $amount
      * @param string $description
      */
-    public function append(float $amount, string $description): void
+    public function appendRow(float $amount, string $description): void
     {
         /** @var UserBalanceLog $log */
         $log = $this->logs()->make();

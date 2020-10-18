@@ -8,7 +8,7 @@ namespace Core\BankIntegration;
  * Class ResponseInterface
  * @package Core\BankIntegration
  */
-class ResponseInterface
+class ResponseStructure
 {
     /**
      * @var string

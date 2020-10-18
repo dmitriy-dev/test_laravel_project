@@ -3,9 +3,11 @@
 namespace Core\User;
 
 use Carbon\Carbon;
+use Core\Prize\Prize;
 use Core\UserBalance\UserBalance;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -20,6 +22,8 @@ use Illuminate\Notifications\Notifiable;
  * @property string $password
  * @property string $remember_token
  * @property string $status
+ * @property UserBalance $balance
+ * @property Prize[] $prizes
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */
@@ -82,10 +86,18 @@ class User extends Authenticatable
     }
 
     /**
+     * @return HasOne
+     */
+    public function balance(): HasOne
+    {
+        return $this->hasOne(UserBalance::class);
+    }
+
+    /**
      * @return HasMany
      */
-    public function balance(): HasMany
+    public function prizes(): HasMany
     {
-        return $this->hasMany(UserBalance::class);
+        return $this->hasMany(Prize::class);
     }
 }

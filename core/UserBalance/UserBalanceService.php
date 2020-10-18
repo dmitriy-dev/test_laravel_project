@@ -8,13 +8,18 @@ use Core\User\User;
 
 class UserBalanceService
 {
-    public function getBalance(User $user): UserBalance
+    /**
+     * @param User $user
+     * @param float $amount
+     * @param string $description
+     */
+    public function appendBalance(User $user, float $amount, string $description): void
     {
-        //
-    }
+        if (null === $user->balance) {
+            $user->balance()->create([]);
+            $user->refresh();
+        }
 
-    public function appendBalance(User $user, float $amount): void
-    {
-
+        $user->balance->appendRow($amount, $description);
     }
 }
